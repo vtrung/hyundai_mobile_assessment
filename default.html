@@ -1,0 +1,334 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="scripts/app.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <!-- navigation -->
+    <nav class="navbar-static-top">
+      <div class="navbar-header">
+        <div class="nav-custom">
+          <img class="nav-logo" ng-click="redirect('/default.html')" src="comps/logo.png">
+          <div class="nav-item nav-menu" ng-click="dropdown()">
+            Menu
+            <span><img src='comps/bars.png'></span>
+          </div>
+          <div class="nav-item nav-dealer"  ng-click="redirect('/find-a-dealer')" >
+            Dealer
+            <span><img src='comps/location_pin.png'></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Nav Menu Dropdown-->
+    <div id="menu-dropdown">
+      <div class="menu-header">
+          <div class="menu-logo" ng-click="redirect('/default.html')"><img src="comps/logo_2.png"></div>
+          <div class="menu-close"><img ng-click="slideup()" src="comps/close.png"></div>
+      </div>
+      <div class="row">
+        <div class="col-ps-12 col-xs-6">
+          <div class="menu-title">Shopping Tools</div>
+          <div class="menu-item-container">
+            <div class="row">
+              <div class="col-ps-6 menu-item" ng-click="redirect('/build-and-price')"> Build & Price</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/search-inventory')"> Search Inventory</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/find-a-dealer')"> Find a Dealer</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/local-offers')"> Local Offers</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/request-a-quote')"> Request a Quote</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/schedule-a-test-drive')"> Schedule a Test Drive</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/e-brochures')"> E-Brochures</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/vehicle-lineup')"> Vehicle Lineup</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-ps-12 col-xs-6">
+          <div class="menu-title">More Links</div>
+          <div class="menu-item-container">
+            <div class="row">
+              <div class="col-ps-6 menu-item" ng-click="redirect('/build-and-price')"> Hyundai Assurance</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/search-inventory')"> My Hyundai</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/find-a-dealer')"> Why Hyundai </div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/local-offers')"> Blue Link<sup>&reg;</sup></div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/request-a-quote')"> Receive Updates</div>
+              <div class="col-ps-6 menu-item" ng-click="redirect('/schedule-a-test-drive')"> Vehicle Accessories</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-footer">
+        <img  ng-click="slideup()" src="comps/close.png">
+      </div>
+    </div>
+
+    <!--  carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-slide-0 item active" ng-click="redirect('/veloster')"></div>
+        <div class="carousel-slide-1 item" ng-click="redirect('/sonata')"></div>
+        <div class="carousel-slide-2 item" ng-click="redirect('/sonata-hybrid')"></div>
+        <div class="carousel-slide-3 item" ng-click="redirect('/tucson')"></div>
+      </div>
+    </div>
+
+    <!-- banner -->
+    <div class="banner-container">
+      <img ng-click="redirect('/veloster')" src="comps/banner.png" height="50">
+    </div>
+
+  <div class="cars-container">
+
+    <!-- compact-->
+    <div class="category-container">
+      <p class="category-title">Compacts</p>
+      <div class="row">
+        <div ng-repeat="car in carlist" ng-if="car.type == 'compact'" ng-click="redirect('{{car.id | createPath}}')" class="col-xs-3 col-ps-6">
+          <div class="car-container" id={{car.id}}>
+            <div class="car-image-container">
+              <img src="{{car.image}}">
+            </div>
+            <div class="car-title">{{car.name}}</div>
+            <div class="car-pricing">
+              <span ng-if="car.message == null">From {{car.cost | currency:"$":0}}</span>
+              <span ng-if="car.message != null">{{car.message}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="category-container">
+
+      <div class="row">
+        <!-- sedan-->
+        <div class="col-ps-12 col-xs-6 container category-container">
+          <p class="category-title">Sedans</p>
+          <div class="row">
+            <div ng-repeat="car in carlist" ng-if="car.type == 'sedan'" ng-click="redirect('{{car.id | createPath}}')" class="col-ps-6">
+              <div class="car-container" id="{{car.id}}">
+                <div class="car-image-container">
+                  <img src="{{car.image}}">
+                </div>
+                <div class="car-title">{{car.name}}</div>
+                <div class="car-pricing">
+                  <span ng-if="car.message == null">From {{car.cost | currency:"$":0}}</span>
+                  <span ng-if="car.message != null">{{car.message}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- crossover-->
+        <div class="col-ps-12 col-xs-6 container category-container category-alt">
+          <p class="category-title">Crossovers</p>
+          <div class="row">
+            <div ng-repeat="car in carlist" ng-if="car.type == 'crossover'" ng-click="redirect('{{car.id | createPath}}')" class="col-ps-6">
+              <div class="car-container" id="{{car.id}}">
+                <div class="car-image-container">
+                  <img src="{{car.image}}">
+                </div>
+                <div class="car-title">{{car.name}}</div>
+                <div class="car-pricing">
+                  <span ng-if="car.message == null">From {{car.cost | currency:"$":0}}</span>
+                  <span ng-if="car.message != null">{{car.message}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- hybrid-->
+    <div class="category-container">
+      <p class="category-title">Hybrid / Fuel Cell</p>
+      <div class="row">
+        <div ng-repeat="car in carlist" ng-if="car.type == 'hybrid'" ng-click="redirect('{{car.id | createPath}}')" class="col-xs-3 col-ps-6">
+          <div class="car-container" id="{{car.id}}">
+            <div class="car-image-container">
+              <img src="{{car.image}}">
+            </div>
+            <div class="car-title">{{car.name}}</div>
+            <div class="car-pricing">
+              <span ng-if="car.message == null">From {{car.cost | currency:"$":0}}</span>
+              <span ng-if="car.message != null">{{car.message}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- premium-->
+    <div class="category-container">
+      <p class="category-title">Performance / Premium</p>
+      <div class="row">
+        <div ng-repeat="car in carlist" ng-if="car.type == 'premium'" ng-click="redirect('{{car.id | createPath}}')" class="col-xs-3 col-ps-6">
+          <div class="car-container" id="{{car.id}}">
+            <div class="car-image-container">
+              <img src="{{car.image}}">
+            </div>
+            <div class="car-title">{{car.name}}</div>
+            <div class="car-pricing">
+              <span ng-if="car.message == null">From {{car.cost | currency:"$":0}}</span>
+              <span ng-if="car.message != null">{{car.message}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- future-->
+    <div class="category-container">
+      <p class="category-title">Future</p>
+      <div class="row">
+        <div ng-repeat="car in carlist" ng-if="car.type == 'future'" ng-click="redirect('{{car.id | createPath}}')" class="col-xs-3 col-ps-6">
+          <div class="car-container" id="{{car.id}}">
+            <div class="car-image-container">
+              <img src="{{car.image}}">
+            </div>
+            <div class="car-title">{{car.name}}</div>
+            <div class="car-pricing">
+              <span ng-if="car.message == null">From {{car.cost | currency:"$":0}}</span>
+              <span ng-if="car.message != null">{{car.message}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- find dealer -->
+    <div class="dealer-container">
+
+      <div class="word-line">
+        <span>Find A Dealer</span>
+      </div>
+      <div class="row">
+        <div class="location-container col-ps-12 col-xs-offset-3 col-xs-9">
+          <div ng-click="getlocation()" class="location-btn">
+            <span><img src="comps/arrow.png"></span>Use my location
+          </div>
+          <input ng-click="clearzip()" ng-model="zip" maxlength="5">
+          <div ng-click="finddealer()" class="location-go">Go</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- shopping tool -->
+    <div class="shopping-container">
+      <div class="shopping-header">
+        <div class="word-line">
+          <span>Shopping Tools</span>
+        </div>
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/build-and-price')">
+        Build & Price
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/search-inventory')">
+        Search Inventory
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/find-a-dealer')">
+        Find a Dealer
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/local-offers')">
+        Local Offers
+      </div>
+      <div class="clearfix visible-xs"></div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('request-a-quote')">
+        Request a Quote
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/schedule-a-test-drive')">
+        Schedule a Test Drive
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/e-brochures')">
+        E-brochures
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/trade-in-value')">
+        Trade-in Value
+      </div>
+      <div class="clearfix visible-xs"></div>
+      <div class="shopping-item col-xs-3 col-xs-offset-3 col-ps-6" ng-click="redirect('/payment-calculator')">
+        Payment Calculator
+      </div>
+      <div class="shopping-item col-xs-3 col-ps-6" ng-click="redirect('/vehicle-lineup')">
+        Vehicle Lineup
+      </div>
+    </div>
+
+    <!-- social media -->
+    <div class="social-container">
+      <div class="word-line">
+        <span class="social-items">
+          <img ng-click="redirect('http://facebook.com/hyundai')" src="comps/social/facebook.png">
+          <img ng-click="redirect('http://twitter.com/hyundai')" src="comps/social/twitter.png">
+          <img ng-click="redirect('http://instagram.com/hyundai')" src="comps/social/instagram.png">
+          <img ng-click="redirect('http://youtube.com/hyundai')" src="comps/social/youtube.png">
+          <img ng-click="redirect('http://plus.google.com/hyundai')" src="comps/social/gplus.png">
+        </span>
+      </div>
+      <div></div>
+    </div>
+    <!-- footer-->
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img ng-click="redirect('/default.html')" src="comps/logo_1.png">
+      </div>
+      <div class="footer-legal">
+    		<span>Hyundai is a registered trademark of Hyundai</span>
+        <span>Motor Company. All rights reserved.</span>
+        <span>&copy; 2015 Hyundai Motor America</span>
+      </div>
+      <div class="footer-links">
+          <span ng-click="redirect('/contact-us')">Contact Us</span>
+          <span>&#124;</span>
+          <span ng-click="redirect('/terms-of-use')">Terms of Use</span>
+          <span>&#124;</span>
+          <span ng-click="redirect('/privacy')">Privacy</span>
+          <span>&#124;</span>
+          <span ng-click="redirect('/legal')">Legal</span>
+      </div>
+
+    </div>
+  <script>
+  $(document).ready(function() {
+     $("#myCarousel").swiperight(function() {
+        $(this).carousel('prev');
+      });
+     $("#myCarousel").swipeleft(function() {
+        $(this).carousel('next');
+     });
+  });
+
+  function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  };
+
+  function showPosition(position) {
+      console.log("Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude);
+  };
+  </script>
+</body>
+</html>

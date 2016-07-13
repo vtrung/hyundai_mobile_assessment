@@ -1,0 +1,12 @@
+@import "custom-bs/bootstrap";
+@import "main";
+
+.carousel-indicators {
+  li{
+    background-color: $grey;
+    border:none;
+  }
+  .active {
+    background-color: $blue-dark;
+  }
+}

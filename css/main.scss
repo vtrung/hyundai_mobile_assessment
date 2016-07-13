@@ -1,0 +1,376 @@
+$blue-dark: #004B8D;
+$blue-darker: #002D73;
+$blue-text: #0055B8;
+$blue-light: #0075C9;
+$blue: #337ab7;
+$grey: #CCCCCC;
+$grey-dark: #808080;
+
+.main-container{
+  color: $blue;
+}
+
+.nav-custom{
+  .nav-logo{
+    height:60px;
+  }
+  .nav-item{
+    float:right;
+    color: $blue-text;
+    padding: 15px 10px;
+    font-size: 20px;
+    font-family: Arial,sans-serif;
+    img{
+      padding-left:2px;
+    }
+  }
+  .nav-menu{
+    img{
+      height: 14px;
+    }
+    &:active{
+      font-weight: 700;
+    }
+  }
+  .nav-dealer{
+    img{
+      height: 18px;
+    }
+    &:active{
+      font-weight: 700;
+    }
+  }
+}
+
+#menu-dropdown{
+  display:none;
+  position: absolute;
+  background: white;
+  z-index: 20;
+  top: 0;
+  .menu-header{
+    overflow: auto;
+    .menu-logo{
+      float: left;
+      img{
+        height: 50px;
+        margin: 15px;
+        &:active{
+          height: 52px;
+        }
+      }
+    }
+    .menu-close{
+      float: right;
+      img{
+        height: 40px;
+        margin: 20px;
+        &:active{
+          font-weight: 42px;
+        }
+      }
+    }
+  }
+  .menu-title{
+    text-align:center;
+    padding: 10px 0;
+    margin: 5px 20px;
+    color:$grey-dark;
+    border-bottom: 1px solid $grey;
+  }
+  .menu-item-container{
+    .menu-item{
+      color: $blue-dark;
+      text-align:center;
+      padding: 10px 0;
+      &:active{
+        color: $grey-dark;
+        font-weight: 700;
+      }
+    }
+  }
+  .menu-footer{
+    text-align: center;
+    img{
+      height:40px;
+      margin: 20px;
+    }
+  }
+}
+
+%carousel-slide{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 300px;
+  width: 100%;
+  height: 300px;
+}
+.carousel{
+  .carousel-slide-0{
+    background-image: url("../comps/Hero_1.png");
+    @extend %carousel-slide;
+  }
+  .carousel-slide-1{
+    background-image: url("../comps/Hero_2.png");
+    @extend %carousel-slide;
+  }
+  .carousel-slide-2{
+    background-image: url("../comps/Hero_3.png");
+    @extend %carousel-slide;
+  }
+  .carousel-slide-3{
+    background-image: url("../comps/Hero_4.png");
+    @extend %carousel-slide;
+  }
+}
+
+.banner-container{
+  text-align: center;
+  padding: 10px;
+  img{
+    height:70px;
+    &:active{
+      height: 72px;
+    }
+  }
+}
+
+.cars-container{
+  padding:10px;
+  .category-container{
+    margin-bottom:25px;
+    &.category-alt{
+      margin-bottom:0;
+    }
+    .category-title{
+      color: $grey-dark;
+      font-size: 15px;
+      padding:0;
+      margin:0;
+    }
+    .car-container{
+      padding: 10px 0 0 0;
+      .car-image-container{
+        width: 140px;
+        height: 65px;
+        position:relative;
+      }
+      img{
+        max-height:100%;
+        max-width: 100%;
+        position:absolute;
+        bottom:0;
+        &:active{
+          font-weight: 53px;
+        }
+      }
+      .car-title{
+        color: $blue;
+        font-size: 14px;
+        padding-top: 5px;
+      }
+      .car-pricing{
+        color: $blue-darker;
+        font-size: 13px;
+      }
+      &:active{
+        font-weight: 700;
+      }
+    }
+    /* custom car image */
+    #accent{
+      img{
+        padding-left: 10px;
+      }
+    }
+    #tucson{
+      img{
+        padding-left: 10px;
+        padding-top: 7px;
+      }
+    }
+    #tucson-fuel-cell{
+      img{
+        padding-left: 5px;
+        padding-top: 2px;
+      }
+    }
+  }
+}
+
+%word-line{
+  text-align: center;
+  color: $grey;
+  position: relative;
+  margin: 10px 25px 15px;
+  &::before{
+    background-color:#1a5d99; content:""; position:absolute; top:50%; left:0; height:1px; width:100%; z-index:1;
+  }
+}
+
+.dealer-container{
+  overflow: auto;
+  background: $blue-dark;
+  text-align: center;
+  padding:10px 0;
+  margin-top: 10px;
+  .word-line{
+    @extend %word-line;
+    span{
+      background-color:$blue-dark;
+      padding:0 20px;
+      z-index:2;
+      position:relative;
+      img{
+        height:20px;
+      }
+    }
+  }
+  .location-container{
+    overflow:auto;
+    padding-bottom: 15px;
+    .location-btn{
+      color: white;
+      width: 150px;
+      padding: 4px;
+      margin: 0 20px;
+      border: 1px solid white;
+      border-radius: 15px;
+      float: left;
+      span{
+        margin: 0 5px 0 0;
+        img{
+          height:12px;
+        }
+      }
+      &:active{
+        color: $grey-dark;
+        font-weight: 700;
+      }
+
+    }
+    input{
+      color: $grey;
+      border:none;
+      border-radius: 5px;
+      padding:0 12px;
+      width: 90px;
+      height: 28px;
+      float:left;
+      &:focus{
+        color: $blue-darker;
+      }
+    }
+    .location-go{
+      color: white;
+      width: 30px;
+      height: 30px;
+      padding: 5px 0px;
+      margin: 0 20px;
+      border: 1px solid white;
+      border-radius: 28px;
+      float: left;
+      &:active{
+        color: $grey-dark;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.shopping-container{
+  overflow:auto;
+  margin: 15px 0;
+  .shopping-header{
+    .word-line{
+      @extend %word-line;
+      &::before{
+        background-color: $grey;
+      }
+      span{
+        color: $grey-dark;
+        background-color:white;
+        padding:0 20px;
+        z-index:2;
+        position:relative;
+        img{
+          height:20px;
+        }
+      }
+    }
+  }
+  .shopping-item{
+    color: $blue-dark;
+    text-align:center;
+    padding: 10px 0;
+    &:active{
+      color: $grey-dark;
+      font-weight: 700;
+    }
+  }
+}
+
+.social-container{
+  margin-top: 8px;
+  .word-line{
+    @extend %word-line;
+    &::before{
+      background-color: $grey;
+    }
+    .social-items{
+      background-color:white;
+      padding:0 4px;
+      z-index:2;
+      position:relative;
+      img{
+        height: 30px;
+        padding: 0 4px;
+        &:active{
+          height:32px;
+        }
+      }
+    }
+  }
+}
+
+.footer-container{
+  margin-top: 25px;
+  .footer-logo{
+    text-align:center;
+    img{
+      width: 270px;
+      &:active{
+        width: 272px;
+      }
+    }
+  }
+  ul{
+    list-style-type: none;
+  }
+  .footer-legal{
+    padding-top:10px;
+    color: $grey;
+    font-size:12px;
+    text-align: center;
+    span{
+      display:block;
+      @media (min-width: 480px) {
+        display: inline;
+      }
+    }
+  }
+  .footer-links{
+    padding:10px 0;
+    text-align: center;
+    span{
+      font-size:13px;
+      padding: 0 3px;
+      color: $blue-dark;
+      &:active{
+        color: $grey-dark;
+        font-weight: 700;
+      }
+    }
+
+  }
+}
